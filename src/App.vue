@@ -3,131 +3,115 @@ import { RouterLink, RouterView } from "vue-router";
 </script>
 
 <template>
-  <div id="app" class="app-wrapper">
-    <header>
-      <div class="header-wrapper">
-        <div class="header-left">
-          <HelloWorld msg="Vengince." />
-        </div>
-        <nav>
-          <RouterLink to="/">Home</RouterLink>  <!-- Link to Home -->
-          <RouterLink to="/fishing">Fishing</RouterLink>
-          <RouterLink to="/inventory">Inventory</RouterLink>
-          <RouterLink to="/market">Market</RouterLink>
-        </nav>
+  <header class="app-wrapper">
+    <div class="header-wrapper">
+      <!-- Left Section of the Header -->
+      <div class="header-left">
+        <div class="app-title">Vengince</div>
       </div>
-    </header>
-    <main>
-      <RouterView />  <!-- This will render the Home or other components -->
-    </main>
-  </div>
+
+      <!-- Navigation Links -->
+      <nav>
+        <RouterLink to="/" class="nav-item">Home</RouterLink>
+        <RouterLink to="/fishing" class="nav-item">Fishing</RouterLink>
+        <RouterLink to="/inventory" class="nav-item">Inventory</RouterLink>
+        <RouterLink to="/market" class="nav-item">Market</RouterLink>
+      </nav>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <RouterView /> <!-- Dynamically renders routed components -->
+  </main>
 </template>
 
 <style scoped>
-/* Wrapper for the App */
+/* HEADER WRAPPER STYLING */
 .app-wrapper {
-  display: flex;
-  flex-direction: column;
   width: 100%;
-  height: 100vh;
-  background: #121212;
-  color: #e0e0e0;
-  overflow: hidden;
-}
-
-/* Header Styles */
-header {
-  width: 100%;
-  background: #1e1e1e;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  height: 60px; /* Fixed height for the header */
+  background: #1e1e1e; /* Background color for the header */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
   z-index: 10;
+  position: relative; /* Ensure proper stacking hierarchy */
 }
 
-/* Header Wrapper to Limit Max Width */
+/* Header Content Wrapper for Flex Layout */
 .header-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 1rem; /* Adjust padding for proper space */
-  max-width: 1200px; /* Set a max-width to prevent stretching on larger screens */
-  margin: 0 auto; /* Center content horizontally */
+  padding: 0.5rem 1rem; /* Space around content */
+  max-width: 1200px; /* Prevent over-stretching */
+  margin: 0 auto; /* Center horizontally */
   width: 100%;
 }
 
-/* Header Left Section */
-.header-left {
-  font-size: 1.2rem; /* Adjust font size for better fit */
-  color: #e0e0e0;
+/* Header Left Section (Brand Title) */
+.header-left .app-title {
+  font-size: 1.5rem; /* Title size */
+  font-weight: bold;
+  color: #e0e0e0; /* Text color for the header section */
 }
 
-/* Navigation Styles */
+/* NAVIGATION */
 nav {
   display: flex;
-  gap: 1rem; /* Larger gap for readability */
+  gap: 1rem; /* Space between nav links */
 }
 
-nav a {
-  text-decoration: none;
-  color: #ffffff;
-  font-weight: bold;
-  font-size: 1rem; /* Adjusted font size */
-  padding: 0.5rem 1rem;
-  border-radius: 0.3rem;
-  transition: 0.3s;
-  white-space: nowrap;
+.nav-item {
+  text-decoration: none; /* No underline for links */
+  color: #ffffff; /* Default link color */
+  font-weight: bold; /* Make the link text bold */
+  font-size: 1rem; /* Link font size */
+  padding: 0.5rem 1rem; /* Add padding for click area */
+  border-radius: 0.25rem; /* Rounded corners on links */
+  transition: 0.3s; /* Smooth transition for hover/active states */
+  white-space: nowrap; /* Prevent text from wrapping */
 }
 
-/* Active Link and Hover Styles */
-nav a.router-link-exact-active {
+.nav-item.router-link-exact-active {
   color: #1e1e1e;
-  background: #4caf50;
+  background: #4caf50; /* Background color for active link */
 }
 
-nav a:hover {
-  color: #121212;
-  background: #81c784;
+.nav-item:hover {
+  color: #121212; /* Darker link text color on hover */
+  background: #81c784; /* Light green background on hover */
 }
 
-/* Main Content Area */
-main {
-  flex: 1;  /* Take up remaining space */
-  padding: 1rem; /* Padding for content spacing */
-  background: #121212;
-  overflow-y: auto;
-  width: 100%; /* Ensure the main container takes full width */
-  min-height: calc(100vh - 60px); /* Ensure main container has a minimum height of the viewport minus header */
-  display: flex;
-  justify-content: center; /* Center content horizontally */
-  align-items: center; /* Center content vertically */
-  flex-direction: column; /* Allow content to stack if needed */
+/* MAIN CONTENT AREA */
+.app-main {
+  flex: 1; /* Fill remaining space below the header */
+  padding: 1rem; /* Add space inside the main content area */
+  background: #121212; /* Main background color */
+  overflow-y: auto; /* Scrollable if content overflows */
+  display: flex; /* Flexbox for centering */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  text-align: center; /* Center text alignment */
+  width: 100%;
 }
 
-/* Hide scrollbar while allowing scrolling */
-main::-webkit-scrollbar {
+/* Hide scrollbar while allowing content scrolling */
+.app-main::-webkit-scrollbar {
   display: none;
 }
 
-/* Global Body Styles */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #121212;
-  overflow: hidden;
-}
+/* RESPONSIVENESS */
 
-/* Responsive Adjustments */
-
-/* Medium Screens */
+/* Medium Screens (Tablets, Laptops) */
 @media (max-width: 1024px) {
-  .header-left {
-    font-size: 1.1rem; /* Adjust font size for medium screens */
+  .app-title {
+    font-size: 1.3rem; /* Adjust title size for medium screens */
   }
 }
 
-/* Small Screens */
+/* Small Screens (Mobile Devices) */
 @media (max-width: 768px) {
-  .header-left {
-    font-size: 1rem; /* Reduced font size for small screens */
+  .app-title {
+    font-size: 1rem; /* Smaller title size for mobile screens */
   }
 }
 </style>
